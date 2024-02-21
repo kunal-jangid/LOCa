@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+    <style>
+        h1 {
+            color: whitesmoke;
+            text-align: center;
+        }
+
+        body {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #indexbutton {
+            height: 60px;
+            width: 140px;
+            background: rgb(111, 224, 220);
+            border-width: 7px;
+            border-color: mediumseagreen;
+            border-radius: 15px;
+        }
+
+        #indexbutton:active {
+            animation-duration: 2s;
+            background: rgb(51, 183, 176);
+            color: whitesmoke;
+        }
+       #put_call_ratio {
+            list-style-type: none;
+            align-self: left;
+            color: whitesmoke; 
+            position: relative;
+       }
+       ul {
+            width: 100%;
+            display: table;
+            table-layout: fixed;
+        }
+       ul li {
+            display: table-cell;
+            width: auto;
+            text-align: center;
+        }
+
+        #optionChainTable {
+            height: 800px;
+            width: fit-content;
+            overflow: auto;
+            background: #f9f9ff;
+        }
+    </style>
+</head>
+
+<body bgcolor="darkcyan">
+    <h1>Option Chain Analysis</h1>
+
+    <script>
+
+        function putCallRatio(endpoint) {
+          fetch("/pcr/" + endpoint)
+                .then((response) => response.text())
+                .then((data) => {
+                    document.getElementById("put_call_ratio").innerHTML = data;
+                });
+        }
+        function fetchNifty() {
+            fetch("NIFTY")
+                .then((response) => response.text())
+                .then((data) => {
+                    document.getElementById("nifty_value").innerHTML = data;
+                });
+
+            fetch("BANKNIFTY")
+                .then((response) => response.text())
+                .then((data) => {
+                    document.getElementById("banknifty_value").innerHTML = data;
+                });
+
+            fetch("FINNIFTY")
+                .then((response) => response.text())
+                .then((data) => {
+                    document.getElementById("finnifty_value").innerHTML = data;
+                });
+        }
+
+        function fetchTable(endpoint) {
+            fetch("/index/" + endpoint)
+                .then((response) => response.text())
+                .then((data) => {
+                    document.getElementById("optionChainTable").innerHTML = data;
+                });
+          fetchNifty('niftynow');
+          putCallRatio(endpoint);
+        }
+
+        fetchNifty();
+    </script>
+
+        <center>
+            <button onclick="fetchTable('NIFTY');" id="indexbutton">
+                <b>NIFTY</b> <br> <div id="nifty_value"></div>
+            </button>
+            <button onclick="fetchTable('BANKNIFTY')" id="indexbutton">
+                <b>BANKNIFTY</b> <br> <div id="banknifty_value">
+            </button>
+            <button onclick="fetchTable('FINNIFTY')" id="indexbutton">
+                <b>FINNIFTY</b> <br> <div id="finnifty_value">
+            </button>
+          <br>
+          <br>
+            <ul id="put_call_ratio">
+            </ul>
+        </center>
+    
+  <br>
+  <br>
+    <div id="optionChainTable" style="display:block"></div>
+    <br>
+    <br>
+</body>
+
+</html>
