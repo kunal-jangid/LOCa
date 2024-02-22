@@ -1,4 +1,4 @@
-
+![Screenshot](https://github.com/kunal-jangid/LOCa/blob/main/Screenshot%20(22).png "a title")
 # Description
 Live Option Chain Analyzer data fetcher, data pipeline, and online portal to derive tabular analysis on option chain data from NSE India and display trends for NIFTY, BANKNIFTY, and FINNIFTY option chain traders using Python, pandas data manipulation and styling, and flask integration with HTML/CSS/JS
 
