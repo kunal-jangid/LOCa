@@ -9,10 +9,7 @@ from bs4 import BeautifulSoup
 import datastyler as ds
 
 headers = {
-    'User-Agent':
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8'
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
 }
 url = "https://www.nseindia.com/api/option-chain-indices?symbol="
 
@@ -35,12 +32,6 @@ def nifty():
 
 
 def niftyval(index):
-  headers = {
-      'User-Agent':
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'Accept-Language': 'en-US,en;q=0.9,hi;q=0.8'
-  }
   url = "https://www.nseindia.com/"
   req = requests.get(url, headers=headers)
 
